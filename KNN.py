@@ -28,13 +28,16 @@ class KNN:
             Takes mean of neighbor labels in regression
             Select most common neighbor label in classification
         """
-        distance_label = [
-            (self.distance(x, train_point), train_label)
-            for train_point, train_label in zip(self.x, self.y)]
-        distance_label.sort()
-        neighbors = distance_label[:k]
-        if c:
-            neighbors_labels = [label for dist, label in neighbors]
-            return Counter(neighbors_labels).most_common()[0][0]
-        else:
-            return sum(label for _, label in neighbors) / k
+        preds = []
+        for test_point in x:
+            distance_label = [
+                (self.distance(test_point, train_point), train_label)
+                for train_point, train_label in zip(self.x, self.y)]
+            distance_label.sort()
+            neighbors = distance_label[:k]
+            if c:
+                neighbors_labels = [label for dist, label in neighbors]
+                preds.append( Counter(neighbors_labels).most_common()[0][0])
+            else:
+                preds.append(sum(label for _, label in neighbors) / k)
+        return preds
