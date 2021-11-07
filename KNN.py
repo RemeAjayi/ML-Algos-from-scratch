@@ -41,3 +41,10 @@ class KNN:
             else:
                 preds.append(sum(label for _, label in neighbors) / k)
         return preds
+
+"""
+Code the scaler, train_test_split yourself
+Try with another dataset
+What are your time and space complexities?
+How can you optimise them?
+"""
