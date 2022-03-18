@@ -1,3 +1,4 @@
+"""Credit: Data Science Pro Youtube. Modifications are mine"""
 from collections import Counter 
 
 class KNN:
